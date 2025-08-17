@@ -5,6 +5,7 @@ namespace duncan3dc\SonosTests\Utils;
 use duncan3dc\ObjectIntruder\Intruder;
 use duncan3dc\Sonos\Utils\Directory;
 use League\Flysystem\FilesystemInterface;
+use League\Flysystem\FilesystemOperator;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +18,7 @@ class DirectoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->filesystem = Mockery::mock(FilesystemInterface::class);
+        $this->filesystem = Mockery::mock(FilesystemOperator::class);
     }
 
 
@@ -31,7 +32,7 @@ class DirectoryTest extends TestCase
     {
         $directory = new Directory(sys_get_temp_dir(), "share", "directory");
         $intruder = new Intruder($directory);
-        $this->assertInstanceOf(FilesystemInterface::class, $intruder->filesystem);
+        $this->assertInstanceOf(FilesystemOperator::class, $intruder->filesystem);
     }
     public function testConstructor2(): void
     {
